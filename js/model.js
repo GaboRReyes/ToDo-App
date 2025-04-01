@@ -1,4 +1,4 @@
-class Model{
+ export default class Model{
     constructor() {
         this.View = null;
         this.todos = [];
