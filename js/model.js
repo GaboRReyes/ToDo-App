@@ -27,6 +27,6 @@
 
     removeTodo(id) {
         const index = this.todos.findIndex((todo) => todo.id === id );
-        console.log(this.todos[index]);
+        this.todos.splice(index, 1);
     }   
 }

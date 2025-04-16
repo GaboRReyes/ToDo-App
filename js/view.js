@@ -44,9 +44,7 @@ export default class View {
     const removeBtn = document.createElement('button');
     removeBtn.classList.add('btn', 'btn-danger', 'mb-1', 'ml-1');
     removeBtn.innerHTML = '<i class="fa fa-trash"></i>';
-    removeBtn.onclick = function (){
-        removeTodo(row.getAttribute('id'));
-    }
+    removeBtn.onclick =  () =>   this.removeTodo(todo.id);
     row.children[3].appendChild(removeBtn);
     }
 }
