@@ -9,7 +9,7 @@ export default class AddTodo {
         this.btn.onclick = () => {
             if (title.value === '' || description.value ===''){
                 // alert.innerText = 'Title and description are required';
-                console.error('Title and description are required');
+                console.error('Incorrecto');
             }else{
                 // alert.classList.add('d-none');
                 callback(this.title.value, this.description.value);

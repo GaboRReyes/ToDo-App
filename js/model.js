@@ -13,7 +13,7 @@
         return this.todos;
     }
     
-    adddTodo(todo) {
+    addTodo(title, description) {
         const todo = {
             id: this.currentId++,
             title,
@@ -21,6 +21,12 @@
             completed: false
         }
         this.todos.push(todo);
+        console.log(this.todos);
         return {...todo};
     }
+
+    removeTodo(id) {
+        const index = this.todos.findIndex((todo) => todo.id === id );
+        console.log(this.todos[index]);
+    }   
 }
