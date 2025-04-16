@@ -32,6 +32,16 @@
         return this.todos;
     }
 
+    editTodo(id, values) {
+        const index = this.todos.findIndex((todo) => todo.id === id);
+        if (index === -1) {
+            console.warn(`No se encontró ningún todo con id: ${id}`);
+            return;
+        }
+        Object.assign(this.todos[index], values);
+        this.save();
+    }
+
     toggleCompleted(id) {
         const todo = this.findTodo(id);
     if (!todo) {
