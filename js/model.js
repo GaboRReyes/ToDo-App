@@ -9,9 +9,21 @@
         this.view = view;
     }
     
+    findTodo(id) {
+        return this.todos.find((todo) => todo.id === id);
+    }
     getTodos() {
         return this.todos;
     }
+
+    toggleCompleted(id) {
+        const todo = this.findTodo(id);
+    if (!todo) {
+        console.warn(`No se encontró ningún todo con id: ${id}`);
+        return;
+    }
+    todo.completed = !todo.completed; 
+    } 
     
     addTodo(title, description) {
         const todo = {
