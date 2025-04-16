@@ -2,6 +2,7 @@
     constructor() {
         this.View = null;
         this.todos = [];
+        this.currentId = 1;
     }
     
     addView(view) {
@@ -13,6 +14,13 @@
     }
     
     adddTodo(todo) {
-        console.log(todo);
+        const todo = {
+            id: this.currentId++,
+            title,
+            description,
+            completed: false
+        }
+        this.todos.push(todo);
+        return {...todo};
     }
 }

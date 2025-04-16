@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',function(){
         alert.classList.remove('d-none');
         alert.innerText = 'Title and description are required';
         return;
-    }
+        }
 
     alert.classList.add('d-none');
     const row = table.insertRow();
