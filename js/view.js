@@ -1,5 +1,6 @@
 import AddTodo from './componenets/add-todo.js';
 import Modal from './componenets/modal.js';
+import { exportToExcel } from './componenets/excel-export.js';
 
 export default class View {
     constructor() {
@@ -19,6 +20,11 @@ export default class View {
     render() {
         const todos = this.model.getTodos();
         todos.forEach((todo) => this.createRow(todo));
+        const exportBtn = document.getElementById('export');
+        exportBtn.addEventListener('click', () => {
+            const tasks = this.model.getTodos(); 
+            exportToExcel(tasks);
+        });
     }
 
     addTodo(title, description) {
