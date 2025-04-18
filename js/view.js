@@ -1,7 +1,7 @@
 import AddTodo from './componenets/add-todo.js';
 import Modal from './componenets/modal.js';
 import { exportToExcel } from './componenets/excel-export.js';
-
+import Filters from './componenets/filters.js';
 export default class View {
     constructor() {
         this.model = null;
