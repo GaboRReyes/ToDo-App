@@ -29,7 +29,7 @@
         return this.todos.find((todo) => todo.id === id);
     }
     getTodos() {
-        return this.todos;
+        return this.todos.map((todo) => ({...todo}));
     }
 
     editTodo(id, values) {
