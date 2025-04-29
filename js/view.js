@@ -2,15 +2,18 @@ import AddTodo from './componenets/add-todo.js';
 import Modal from './componenets/modal.js';
 import { exportToExcel } from './componenets/excel-export.js';
 import Filters from './componenets/filters.js';
+
 export default class View {
     constructor() {
         this.model = null;
         this.table = document.getElementById('table');
         this.addTodoForm = new AddTodo();
         this.modal = new Modal();
+        this.filters = new Filters();
 
         this.addTodoForm.onClick((title, description) => { this.addTodo(title, description); });
         this.modal.onClick((id, values) => this.editTodo(id, values));
+        this.filters.onClick((filters)=> this.filter(filters));
     }
 
     setModel(model) {
@@ -26,6 +29,32 @@ export default class View {
             exportToExcel(tasks);
         });
     }
+
+    filter(filters){
+const {type, words} = filters;
+const [,...rows] = this.table.getElementById('tr');
+for (const row of rows){
+const [title, description, completed]= row.children;
+let shouldHide = false;
+
+if(words){
+    shouldHide = !title.innerText.includes(words) && !description.innerText.includes(words);
+}
+
+const shouldBeCompleted = type === 'completed';
+const isCompleted = completed.children[0].checked;
+
+if (type !== 'all' && shouldBeCompleted !== isCompleted) {
+    shouldHide = true;
+}
+if (shouldHide) {
+    row.classList.add('d-none');
+}
+else{
+row.classList.remove('d-none');
+}
+}
+   }
 
     addTodo(title, description) {
         const todo = this.model.addTodo(title, description);
