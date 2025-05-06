@@ -1,5 +1,10 @@
  export default class Model{
-    constructor() {
+    constructor(storage) {
+        this.storage = storage;
+        this.todos = JSON.parse(this.storage.getItem('todos')) || [];
+        this.currentId = this.todos.length ? this.todos[this.todos.length - 1].id + 1 : 0;
+
+        this.todos = JSON.parse(this.storage.getItem('todos'));
         this.View = null;
         this.todos = JSON.parse(localStorage.getItem('todos'));
         if (!this.todos || this.todos.length < 1) {
@@ -21,9 +26,10 @@
         this.view = view;
     }
 
-    save(){
-        localStorage.setItem('todos', JSON.stringify(this.todos));
-    }
+    save() {
+        console.log('Guardando en localStorage...', this.todos);
+        this.storage.setItem('todos', JSON.stringify(this.todos));
+    }    
     
     findTodo(id) {
         return this.todos.find((todo) => todo.id === id);
@@ -51,6 +57,8 @@
     todo.completed = !todo.completed; 
     this.save();
     } 
+
+
     
     addTodo(title, description) {
         const todo = {
